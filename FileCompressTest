@@ -1,0 +1,47 @@
+package huffmanCode;
+
+import java.util.Scanner;
+
+public class FileCompressTest {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        boolean exit = false;
+        Print pr = new Print();
+        String like = "D:\\\\compressfile\\\\R-C.jpg";
+        String Like = "D:\\\\compressfile\\\\R-C.zip";
+        while (!exit) {
+            pr.print();
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    // Compress file
+                    System.out.println("please input like this" + "  " + like);
+                    System.out.println("Enter the source file path:");
+                    sc.nextLine(); // Consume the newline left-over
+                    String srcfile = sc.nextLine();
+                    System.out.println("Enter the target file path:");
+                    String targetfile = sc.nextLine();
+                    HuffmanCode.zipFile(srcfile, targetfile);
+                    break;
+
+                case 2:
+                    // Decompress file
+                    System.out.println("please input like this" + "  " + Like);
+                    System.out.println("Enter the zip file path:");
+                    sc.nextLine();
+                    String zipFilePath = sc.nextLine();
+                    System.out.println("Enter the destination path for decompressed file:");
+                    String unzipDestinationPath = sc.nextLine();
+                    HuffmanCode.unzipFile(zipFilePath, unzipDestinationPath);
+                    break;
+                case 3:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
+        sc.close();
+    }
+}
